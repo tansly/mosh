@@ -141,6 +141,8 @@ namespace Overlay {
   private:
     uint64_t last_word_from_server;
     uint64_t last_acked_state;
+    string server_ip;
+    string server_port;
     string escape_key_string;
     wstring message;
     bool message_is_network_error;
@@ -157,6 +159,7 @@ namespace Overlay {
     const wstring &get_notification_string( void ) const { return message; }
     void server_heard( uint64_t s_last_word ) { last_word_from_server = s_last_word; }
     void server_acked( uint64_t s_last_acked ) { last_acked_state = s_last_acked; }
+    void server_ip_port( std::string ip, std::string port) { server_ip = std::move(ip); server_port = std::move(port); };
     int wait_time( void ) const;
 
     void set_notification_string( const wstring &s_message, bool permanent = false, bool s_show_quit_keystroke = true )
